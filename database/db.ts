@@ -2,7 +2,7 @@ import mysql from 'mysql2';
 
 const pool = mysql.createPool({
     host: 'localhost',
-    user: '',
+    user: 'root',
     password: '',
     database: 'AtheneaReche_M2_Books',
     waitForConnections: true,

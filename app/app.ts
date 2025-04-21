@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
+import connectDB from "../database/db";
 import indexRoutes from './routes/index';
+import publishersRoutes from './routes/publishers';
 
 const app = express();
 const port = 6000;
