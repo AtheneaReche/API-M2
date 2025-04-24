@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import db from '../../database/db'
 
-//Get Method
+//Get Method (all of them)
 export const getPublishers = async (req: Request, res: Response): Promise<void> => {
     try{
         const [rows] = await db.execute('SELECT * FROM publishers');
