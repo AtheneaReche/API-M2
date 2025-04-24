@@ -1,5 +1,12 @@
 import { Router } from 'express';
-import { getPublishers, getPublishersById, createPublishers, deletePublishers, updatePublishers } from '../controllers/publishersController';
+import { 
+    getPublishers, 
+    getPublishersById, 
+    createPublishers, 
+    deletePublishers, 
+    updatePublishers 
+    } 
+from '../controllers/publishersController';
 
 const router = Router();
 //Get that return all the Publishers list

@@ -1,5 +1,12 @@
 import { Router } from 'express';
-import { getAuthors, getAuthorsById, createAuthors, deleteAuthors, updateAuthors } from '../controllers/authorsController';
+import { 
+    getAuthors, 
+    getAuthorsById, 
+    createAuthors, 
+    deleteAuthors, 
+    updateAuthors 
+    } 
+from '../controllers/authorsController';
 
 const router = Router();
 //Get that return all the Authors list

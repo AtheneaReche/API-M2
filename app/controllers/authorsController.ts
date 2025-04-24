@@ -29,7 +29,22 @@ export const getAuthorsById = async (req: Request, res: Response): Promise<void>
 export const createAuthors = async (req: Request, res: Response): Promise<void> => {
     const { name, authorPicture, biography, birthdate, deceaseDate } = req.body;
     try{
-        const [result] = await db.execute('INSERT INTO authors (name, author_picture, biography, birthdate, decease_date ) VALUES (?,?,?,?,?)', [name, authorPicture||null, biography||null, birthdate || null, deceaseDate || null]);
+        const [result] = await db.execute(`
+            INSERT INTO authors (
+                name, 
+                author_picture, 
+                biography, 
+                birthdate, 
+                decease_date 
+                ) 
+            VALUES (?,?,?,?,?)`, [
+                name, 
+                authorPicture||null, 
+                biography||null, 
+                birthdate || null, 
+                deceaseDate || null
+            ]
+        );
         console.log('Added author', result);
     } catch (err) {
         console.error('Error executing query: ' + err);
@@ -54,7 +69,22 @@ export const updateAuthors = async (req: Request, res: Response): Promise<void> 
     const { id } = req.params;
     const { name, authorPicture, biography, birthdate, deceaseDate } = req.body;
     try{
-        const [result] = await db.execute('UPDATE authors SET name = ?, author_picture = ?, biography = ?, birthdate = ?, decease_date = ?, WHERE id = ?', [name, authorPicture, biography, birthdate, deceaseDate, id]);
+        const [result] = await db.execute(`
+            UPDATE authors SET 
+                name = ?, 
+                author_picture = ?, 
+                biography = ?, 
+                birthdate = ?, 
+                decease_date = ?, 
+            WHERE id = ?`, [
+                name, 
+                authorPicture, 
+                biography, 
+                birthdate, 
+                deceaseDate, 
+                id
+            ]
+        );
         console.log('Updated author', result);
     } catch (err) {
         console.error('Error executing query: ' + err);
