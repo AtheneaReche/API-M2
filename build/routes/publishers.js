@@ -1,16 +1,9 @@
-import { Router } from 'express';
-import { 
-    getPublishers, 
-    getPublishersById, 
-    createPublishers, 
-    deletePublishers, 
-    updatePublishers 
-    } 
-from '../controllers/publishersController';
-import { authenticateToken, authorizeRole } from '../middlewares/authMiddleware';
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var publishersController_1 = require("../../app/controllers/publishersController");
+var authMiddleware_1 = require("../../app/middlewares/authMiddleware");
+var router = (0, express_1.Router)();
 /**
  * @swagger
  * /publishers:
@@ -38,8 +31,7 @@ const router = Router();
  *       500:
  *         description: Internal server error.
  */
-router.get('/', getPublishers);
-
+router.get('/', publishersController_1.getPublishers);
 /**
  * @swagger
  * /publishers/{id}:
@@ -72,8 +64,7 @@ router.get('/', getPublishers);
  *       500:
  *         description: Internal server error.
  */
-router.get('/:id', getPublishersById);
-
+router.get('/:id', publishersController_1.getPublishersById);
 /**
  * @swagger
  * /publishers:
@@ -101,8 +92,7 @@ router.get('/:id', getPublishersById);
  *       500:
  *         description: Internal server error.
  */
-router.post('/', authenticateToken, authorizeRole('admin'), createPublishers);
-
+router.post('/', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)('admin'), publishersController_1.createPublishers);
 /**
  * @swagger
  * /publishers/{id}:
@@ -126,8 +116,7 @@ router.post('/', authenticateToken, authorizeRole('admin'), createPublishers);
  *       500:
  *         description: Internal server error.
  */
-router.delete('/:id', authenticateToken, authorizeRole('admin'), deletePublishers);
-
+router.delete('/:id', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)('admin'), publishersController_1.deletePublishers);
 /**
  * @swagger
  * /publishers/{id}:
@@ -162,6 +151,5 @@ router.delete('/:id', authenticateToken, authorizeRole('admin'), deletePublisher
  *       500:
  *         description: Internal server error.
  */
-router.put('/:id', authenticateToken, authorizeRole('admin'), updatePublishers);
-
-export default router;
+router.put('/:id', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)('admin'), publishersController_1.updatePublishers);
+exports.default = router;

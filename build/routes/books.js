@@ -1,16 +1,9 @@
-import { Router } from 'express';
-import { 
-    getBooks, 
-    getBooksById, 
-    createBooks, 
-    deleteBooks, 
-    updateBooks
-    } 
-from '../controllers/booksController';
-import { authenticateToken, authorizeRole } from '../middlewares/authMiddleware';
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var booksController_1 = require("../../app/controllers/booksController");
+var authMiddleware_1 = require("../../app/middlewares/authMiddleware");
+var router = (0, express_1.Router)();
 /**
  * @swagger
  * /books:
@@ -71,8 +64,7 @@ const router = Router();
  *       500:
  *         description: Error fetching books
  */
-router.get('/', getBooks);
-
+router.get('/', booksController_1.getBooks);
 /**
  * @swagger
  * /books/{id}:
@@ -120,8 +112,7 @@ router.get('/', getBooks);
  *       500:
  *         description: Error fetching book
  */
-router.get('/:id', getBooksById);
-
+router.get('/:id', booksController_1.getBooksById);
 /**
  * @swagger
  * /books:
@@ -181,8 +172,7 @@ router.get('/:id', getBooksById);
  *       500:
  *         description: Error adding book
  */
-router.post('/', authenticateToken, authorizeRole('admin'), createBooks);
-
+router.post('/', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)('admin'), booksController_1.createBooks);
 /**
  * @swagger
  * /books/{id}:
@@ -207,8 +197,7 @@ router.post('/', authenticateToken, authorizeRole('admin'), createBooks);
  *       500:
  *         description: Error deleting book
  */
-router.delete('/:id', authenticateToken, authorizeRole('admin'), deleteBooks);
-
+router.delete('/:id', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)('admin'), booksController_1.deleteBooks);
 /**
  * @swagger
  * /books/{id}:
@@ -270,6 +259,5 @@ router.delete('/:id', authenticateToken, authorizeRole('admin'), deleteBooks);
  *       500:
  *         description: Error updating book
  */
-router.put('/:id', authenticateToken, authorizeRole('admin'), updateBooks);
-
-export default router;
+router.put('/:id', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)('admin'), booksController_1.updateBooks);
+exports.default = router;

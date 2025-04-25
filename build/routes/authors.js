@@ -1,16 +1,9 @@
-import { Router } from 'express';
-import { 
-    getAuthors, 
-    getAuthorsById, 
-    createAuthors, 
-    deleteAuthors, 
-    updateAuthors 
-    } 
-from '../controllers/authorsController';
-import { authenticateToken, authorizeRole } from '../middlewares/authMiddleware';
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var authorsController_1 = require("../../app/controllers/authorsController");
+var authMiddleware_1 = require("../../app/middlewares/authMiddleware");
+var router = (0, express_1.Router)();
 /**
  * @swagger
  * /authors:
@@ -58,8 +51,7 @@ const router = Router();
  *       500:
  *         description: Error fetching authors
  */
-router.get('/', getAuthors);
-
+router.get('/', authorsController_1.getAuthors);
 /**
  * @swagger
  * /authors/{id}:
@@ -115,8 +107,7 @@ router.get('/', getAuthors);
  *       500:
  *         description: Error fetching author by ID
  */
-router.get('/:id', getAuthorsById);
-
+router.get('/:id', authorsController_1.getAuthorsById);
 /**
  * @swagger
  * /authors:
@@ -167,8 +158,7 @@ router.get('/:id', getAuthorsById);
  *       500:
  *         description: Error creating author
  */
-router.post('/', authenticateToken, authorizeRole('admin'), createAuthors);
-
+router.post('/', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)('admin'), authorsController_1.createAuthors);
 /**
  * @swagger
  * /authors/{id}:
@@ -195,8 +185,7 @@ router.post('/', authenticateToken, authorizeRole('admin'), createAuthors);
  *       500:
  *         description: Error deleting author
  */
-router.delete('/:id', authenticateToken, authorizeRole('admin'), deleteAuthors);
-
+router.delete('/:id', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)('admin'), authorsController_1.deleteAuthors);
 /**
  * @swagger
  * /authors/{id}:
@@ -254,6 +243,5 @@ router.delete('/:id', authenticateToken, authorizeRole('admin'), deleteAuthors);
  *       500:
  *         description: Error updating author
  */
-router.put('/:id', authenticateToken, authorizeRole('admin'), updateAuthors);
-
-export default router;
+router.put('/:id', authMiddleware_1.authenticateToken, (0, authMiddleware_1.authorizeRole)('admin'), authorsController_1.updateAuthors);
+exports.default = router;

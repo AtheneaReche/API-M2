@@ -1,15 +1,9 @@
-import { Router } from 'express';
-import {
-  createCollection,
-  getCollections,
-  deleteCollection,
-  addBookToCollection,
-  removeBookFromCollection
-} from '../controllers/collectionsController';
-import { authenticateToken } from '../middlewares/authMiddleware';
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var collectionsController_1 = require("../../app/controllers/collectionsController");
+var authMiddleware_1 = require("../../app/middlewares/authMiddleware");
+var router = (0, express_1.Router)();
 /**
  * @swagger
  * /collections:
@@ -41,8 +35,7 @@ const router = Router();
  *       500:
  *         description: Error fetching collections
  */
-router.get('/', authenticateToken, getCollections);
-
+router.get('/', authMiddleware_1.authenticateToken, collectionsController_1.getCollections);
 /**
  * @swagger
  * /collections:
@@ -74,8 +67,7 @@ router.get('/', authenticateToken, getCollections);
  *       500:
  *         description: Error creating collection
  */
-router.post('/', authenticateToken, createCollection);
-
+router.post('/', authMiddleware_1.authenticateToken, collectionsController_1.createCollection);
 /**
  * @swagger
  * /collections/{id}:
@@ -102,8 +94,7 @@ router.post('/', authenticateToken, createCollection);
  *       500:
  *         description: Error deleting collection
  */
-router.delete('/:id', authenticateToken, deleteCollection);
-
+router.delete('/:id', authMiddleware_1.authenticateToken, collectionsController_1.deleteCollection);
 /**
  * @swagger
  * /collections/add-book:
@@ -140,8 +131,7 @@ router.delete('/:id', authenticateToken, deleteCollection);
  *       500:
  *         description: Error adding book to collection
  */
-router.post('/add-book', authenticateToken, addBookToCollection);
-
+router.post('/add-book', authMiddleware_1.authenticateToken, collectionsController_1.addBookToCollection);
 /**
  * @swagger
  * /collections/remove-book:
@@ -178,6 +168,5 @@ router.post('/add-book', authenticateToken, addBookToCollection);
  *       500:
  *         description: Error removing book from collection
  */
-router.post('/remove-book', authenticateToken, removeBookFromCollection);
-
-export default router;
+router.post('/remove-book', authMiddleware_1.authenticateToken, collectionsController_1.removeBookFromCollection);
+exports.default = router;

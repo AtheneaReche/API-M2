@@ -1,13 +1,9 @@
-import { Router } from 'express';
-import { authenticateToken } from '../middlewares/authMiddleware';
-import {
-  startReading,
-  updateProgress,
-  getUserBooks
-} from '../controllers/readingController';
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var authMiddleware_1 = require("../../app/middlewares/authMiddleware");
+var readingController_1 = require("../../app/controllers/readingController");
+var router = (0, express_1.Router)();
 /**
  * @swagger
  * /reading:
@@ -41,8 +37,7 @@ const router = Router();
  *       500:
  *         description: Internal server error.
  */
-router.get('/', authenticateToken, getUserBooks);
-
+router.get('/', authMiddleware_1.authenticateToken, readingController_1.getUserBooks);
 /**
  * @swagger
  * /reading/start:
@@ -69,8 +64,7 @@ router.get('/', authenticateToken, getUserBooks);
  *       500:
  *         description: Internal server error.
  */
-router.post('/start', authenticateToken, startReading);
-
+router.post('/start', authMiddleware_1.authenticateToken, readingController_1.startReading);
 /**
  * @swagger
  * /reading/update:
@@ -103,6 +97,5 @@ router.post('/start', authenticateToken, startReading);
  *       500:
  *         description: Internal server error.
  */
-router.put('/update', authenticateToken, updateProgress);
-
-export default router;
+router.put('/update', authMiddleware_1.authenticateToken, readingController_1.updateProgress);
+exports.default = router;

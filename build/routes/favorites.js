@@ -1,9 +1,9 @@
-import { Router } from 'express';
-import { authenticateToken } from '../middlewares/authMiddleware';
-import { getFavorites } from '../controllers/favoritesController';
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var authMiddleware_1 = require("../../app/middlewares/authMiddleware");
+var favoritesController_1 = require("../../app/controllers/favoritesController");
+var router = (0, express_1.Router)();
 /**
  * @swagger
  * /favorites:
@@ -51,6 +51,5 @@ const router = Router();
  *       500:
  *         description: Error fetching favorites
  */
-router.get('/', authenticateToken, getFavorites);
-
-export default router;
+router.get('/', authMiddleware_1.authenticateToken, favoritesController_1.getFavorites);
+exports.default = router;

@@ -1,8 +1,8 @@
-import { Router } from 'express';
-import { register, login } from '../controllers/authController';
-
-const router = Router();
-
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var authController_1 = require("../../app/controllers/authController");
+var router = (0, express_1.Router)();
 /**
  * @swagger
  * /auth/register:
@@ -45,7 +45,7 @@ const router = Router();
  *       500:
  *         description: Error registering user
  */
-router.post('/register', register);
+router.post('/register', authController_1.register);
 /**
  * @swagger
  * /auth/login:
@@ -89,6 +89,5 @@ router.post('/register', register);
  *       500:
  *         description: Error logging in
  */
-router.post('/login', login);
-
-export default router;
+router.post('/login', authController_1.login);
+exports.default = router;
