@@ -4,7 +4,8 @@ import publishersRoutes from './publishers';
 import authorsRoutes from './authors';
 import booksRoutes from './books';
 import authRoutes from './auth';
-import favoritesRoutes from './favorites'
+import favoritesRoutes from './favorites';
+import collectionsRoutes from './books-collections';
 
 const router = Router();
 
@@ -14,5 +15,6 @@ router.use('/authors', authorsRoutes);
 router.use('/books', booksRoutes);
 router.use('/auth', authRoutes);
 router.use('/favorites', favoritesRoutes);
+router.use('/collections', collectionsRoutes);
 
 export default router;
